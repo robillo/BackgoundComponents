@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.add(R.id.fragment_container, fragment);
                 transaction.commit();
+                break;
             }
             case 2:{
                 Fragment fragment = new TwoFragment();

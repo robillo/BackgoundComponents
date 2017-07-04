@@ -48,16 +48,19 @@ public class MainFragment extends Fragment {
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().startService(new Intent(getActivity(), PlayService.class));
+                getActivity().stopService(new Intent(getActivity(), PlayService.class));
             }
         });
 
-        ActivityManager manager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningServiceInfo> list = manager.getRunningServices(50);
-        for (int i = 0; i < list.size(); i++) {
-            ActivityManager.RunningServiceInfo listItem = list.get(i);
-            Toast.makeText(getActivity().getApplicationContext(), "Service Process " + listItem.process + " with component " + listItem.service.getClassName(), Toast.LENGTH_SHORT).show();
-        }
+
+        //TO DISPLAY THE LIST OF CURRENTLY ACTIVE SERVICES
+
+//        ActivityManager manager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+//        List<ActivityManager.RunningServiceInfo> list = manager.getRunningServices(50);
+//        for (int i = 0; i < list.size(); i++) {
+//            ActivityManager.RunningServiceInfo listItem = list.get(i);
+//            Toast.makeText(getActivity().getApplicationContext(), "Service Process " + listItem.process + " with component " + listItem.service.getClassName(), Toast.LENGTH_SHORT).show();
+//        }
 
         return v;
     }
