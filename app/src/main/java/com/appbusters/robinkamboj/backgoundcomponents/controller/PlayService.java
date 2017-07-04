@@ -28,12 +28,11 @@ public class PlayService extends Service{
         player.setLooping(true);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public void onStart(Intent intent, int startId) {
-        super.onStart(intent, startId);
+    public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(this, "Service onStartCommand() called", Toast.LENGTH_SHORT).show();
         player.start();
+        return Service.START_STICKY;
     }
 
     @Override
