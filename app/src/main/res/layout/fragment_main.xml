@@ -1,13 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.appbusters.robinkamboj.backgoundcomponents.view.fragments.MainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        style="@style/TextAppearanceCustom"
+        android:text="@string/start_service"
+        android:textColor="#000000"
+        android:id="@+id/start_service"/>
 
-</FrameLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:textColor="#000000"
+        style="@style/TextAppearanceCustom"
+        android:text="@string/stop_service"
+        android:id="@+id/stop_service"/>
+
+</LinearLayout>

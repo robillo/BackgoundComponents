@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextAppearanceCustom" parent="TextAppearance.AppCompat.Medium">
+        <item name="textSize">20sp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
 </resources>
