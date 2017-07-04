@@ -1,4 +1,4 @@
-package com.appbusters.robinkamboj.backgoundcomponents;
+package com.appbusters.robinkamboj.backgoundcomponents.view.fragments;
 
 
 import android.os.Bundle;
@@ -7,14 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.appbusters.robinkamboj.backgoundcomponents.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment {
+public class FiveFragment extends Fragment {
 
 
-    public MainFragment() {
+    public FiveFragment() {
         // Required empty public constructor
     }
 
@@ -23,11 +24,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        setRetainInstance(true);
-
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
-
-        return v;
+        return inflater.inflate(R.layout.fragment_five, container, false);
     }
 
 }

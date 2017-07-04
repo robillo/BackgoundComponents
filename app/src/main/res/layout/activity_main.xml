@@ -52,35 +52,40 @@
                 android:text="ONE"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
-                android:id="@+id/one"/>
+                android:id="@+id/one"
+                android:onClick="onClick"/>
             <Button
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:text="TWO"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
-                android:id="@+id/two"/>
+                android:id="@+id/two"
+                android:onClick="onClick"/>
             <Button
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:text="THREE"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
-                android:id="@+id/three"/>
+                android:id="@+id/three"
+                android:onClick="onClick"/>
             <Button
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:text="FOUR"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
-                android:id="@+id/four"/>
+                android:id="@+id/four"
+                android:onClick="onClick"/>
             <Button
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:text="FIVE"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
-                android:id="@+id/five"/>
+                android:id="@+id/five"
+                android:onClick="onClick"/>
 
         </LinearLayout>
 
