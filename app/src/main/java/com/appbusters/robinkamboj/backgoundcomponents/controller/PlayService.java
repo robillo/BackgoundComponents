@@ -25,7 +25,7 @@ public class PlayService extends Service{
         super.onCreate();
         Toast.makeText(this, "Service onCreate() called", Toast.LENGTH_SHORT).show();
         player = MediaPlayer.create(this, R.raw.song);
-        player.setLooping(false);
+        player.setLooping(true);
     }
 
     @SuppressWarnings("deprecation")
