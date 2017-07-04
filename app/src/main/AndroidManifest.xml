@@ -12,6 +12,12 @@
 
         <service android:enabled="true" android:name=".controller.PlayService"/>
 
+        <receiver android:name=".controller.BootBroadcast">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".view.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
