@@ -26,7 +26,6 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setRetainInstance(true);
-
         View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         return v;
