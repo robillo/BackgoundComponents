@@ -12,6 +12,7 @@
         android:textSize="20sp"
         android:padding="10sp"
         android:gravity="center"
-        android:background="?attr/selectableItemBackground" />
+        android:background="?attr/selectableItemBackground"
+        android:id="@+id/download" />
 
 </LinearLayout>
