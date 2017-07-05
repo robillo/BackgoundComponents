@@ -71,13 +71,14 @@ public class TwoFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
-            dialog = ProgressDialog.show(getActivity(),
-                    "ProgressDialog",
-                    "Wait for "+time.getText().toString()+ " seconds");
+            dialog = ProgressDialog.show(getActivity(), "ProgressDialog", "Wait for "+time.getText().toString()+ " seconds");
         }
 
         @Override
         protected void onProgressUpdate(String... values) {
+            if(dialog == null){
+                dialog = ProgressDialog.show(getActivity(), "ProgressDialog", "Wait for "+time.getText().toString()+ " seconds");
+            }
             result.setText(values[0]);
 
         }
@@ -85,7 +86,9 @@ public class TwoFragment extends Fragment {
         @Override
         protected void onPostExecute(String finalResult) {
             // execution of result of Long time consuming operation
-            dialog.dismiss();
+            if(dialog!=null){
+                dialog.dismiss();
+            }
             result.setText(finalResult);
         }
     }
