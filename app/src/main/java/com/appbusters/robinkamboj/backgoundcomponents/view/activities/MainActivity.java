@@ -59,41 +59,36 @@ public class MainActivity extends AppCompatActivity {
         switch (which){
             case 1:{
                 Fragment fragment = new MainFragment();
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.add(R.id.fragment_container, fragment);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);
                 transaction.commit();
                 break;
             }
             case 2:{
                 Fragment fragment = new TwoFragment();
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.add(R.id.fragment_container, fragment);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);
                 transaction.commit();
                 break;
             }
             case 3:{
                 Fragment fragment = new ThreeFragment();
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.add(R.id.fragment_container, fragment);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);
                 transaction.commit();
                 break;
             }
             case 4:{
                 Fragment fragment = new FourFragment();
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.add(R.id.fragment_container, fragment);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);
                 transaction.commit();
                 break;
             }
             case 5:{
                 Fragment fragment = new FiveFragment();
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.add(R.id.fragment_container, fragment);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);
                 transaction.commit();
                 break;
             }
