@@ -25,7 +25,10 @@ public class ThreeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setRetainInstance(true);
-        return inflater.inflate(R.layout.fragment_three, container, false);
+        View v = inflater.inflate(R.layout.fragment_three, container, false);
+
+
+        return v;
     }
 
 }
