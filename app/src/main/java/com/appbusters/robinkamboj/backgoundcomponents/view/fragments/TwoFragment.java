@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.appbusters.robinkamboj.backgoundcomponents.R;
 
@@ -16,6 +19,9 @@ import com.appbusters.robinkamboj.backgoundcomponents.R;
  */
 public class TwoFragment extends Fragment {
 
+    EditText time;
+    Button startMyAsync;
+    TextView result;
 
     public TwoFragment() {
         // Required empty public constructor
@@ -23,35 +29,64 @@ public class TwoFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setRetainInstance(true);
-        return inflater.inflate(R.layout.fragment_two, container, false);
+
+        View v = inflater.inflate(R.layout.fragment_two, container, false);
+        time = (EditText) v.findViewById(R.id.time);
+        startMyAsync = (Button) v.findViewById(R.id.start);
+        result = (TextView) v.findViewById(R.id.result);
+
+        startMyAsync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyAsyncTaskRunner runner = new MyAsyncTaskRunner();
+                String sleepTime = time.getText().toString();
+                runner.execute(sleepTime);
+            }
+        });
+
+        return v;
     }
 
     private class MyAsyncTaskRunner extends AsyncTask<String, String, String>{
 
+        String resp;
         ProgressDialog dialog;
 
         @Override
-        protected String doInBackground(String... strings) {
-            return null;
+        protected String doInBackground(String... params) {
+            publishProgress("Sleeping...");       //Calls onProgressUpdate()
+            try {
+                int time = Integer.parseInt(params[0])*1000;
+                Thread.sleep(time);
+                resp = "Slept for " + params[0] + " seconds";
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                resp = e.getMessage();
+            }
+            return resp;
         }
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+            dialog = ProgressDialog.show(getActivity(),
+                    "ProgressDialog",
+                    "Wait for "+time.getText().toString()+ " seconds");
         }
 
         @Override
         protected void onProgressUpdate(String... values) {
-            super.onProgressUpdate(values);
+            result.setText(values[0]);
+
+        }
+
+        @Override
+        protected void onPostExecute(String finalResult) {
+            // execution of result of Long time consuming operation
+            dialog.dismiss();
+            result.setText(finalResult);
         }
     }
 }
