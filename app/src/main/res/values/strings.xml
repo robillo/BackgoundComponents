@@ -6,4 +6,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="start_service">START SERVICE</string>
     <string name="stop_service">STOP SERVICE</string>
+    <string name="please_enter_time_in_seconds">Please Enter Time in Seconds:</string>
+    <string name="hint">5</string>
+    <string name="start_my_asynctask">Start My AsyncTask</string>
 </resources>

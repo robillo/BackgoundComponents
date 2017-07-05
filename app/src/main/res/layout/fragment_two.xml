@@ -1,13 +1,44 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.appbusters.robinkamboj.backgoundcomponents.view.fragments.TwoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="@string/please_enter_time_in_seconds"
+        android:textSize="15sp"
+        android:layout_margin="5sp"
+        android:gravity="center_horizontal"
+        android:padding="5sp"/>
 
-</FrameLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3sp"
+        android:inputType="number"
+        android:layout_margin="5sp"
+        android:gravity="center_horizontal"
+        android:id="@+id/time"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/start_my_asynctask"
+        android:textSize="15sp"
+        android:layout_margin="10sp"
+        android:background="?attr/selectableItemBackground"
+        android:id="@+id/start"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_margin="5sp"
+        android:gravity="center_horizontal"
+        android:padding="5sp"
+        android:id="@+id/result"/>
+
+</LinearLayout>
