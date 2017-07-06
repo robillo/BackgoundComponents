@@ -149,7 +149,7 @@ public class ThreeFragment extends Fragment {
                 while ((count = input.read(data)) != -1) {
                     total += count;
                     // Publish the progress which triggers onProgressUpdate method
-                    publishProgress("" + (int) ((total * 100) / lenghtOfFile));
+                    publishProgress(String.valueOf((int) ((total * 100) / lenghtOfFile)));
 
                     // Write data to file
                     output.write(data, 0, count);
@@ -185,8 +185,13 @@ public class ThreeFragment extends Fragment {
         @Override
         protected void onProgressUpdate(String... progress) {
             // Set progress percentage
-            prgDialog.setProgress(Integer.parseInt(progress[0]));
+            Log.e("PROGRESS", progress[0]);
+            incrementProgress(Integer.parseInt(progress[0]));
         }
+    }
+
+    private void incrementProgress(int value){
+        prgDialog.setProgress(value);
     }
 
     private void dismissDialog(){
