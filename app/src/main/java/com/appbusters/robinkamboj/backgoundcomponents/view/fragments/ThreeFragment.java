@@ -1,12 +1,16 @@
 package com.appbusters.robinkamboj.backgoundcomponents.view.fragments;
 
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -57,31 +61,48 @@ public class ThreeFragment extends Fragment {
 
         downloadButton = (Button) v.findViewById(R.id.download);
 
+        checkForPermissions();
+
         downloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 downloadButton.setEnabled(false);
                 File file = new File(Environment.getExternalStorageDirectory().getPath() + "/jai_ho.mp3");
-                if(file.exists()){
-                    Toast.makeText(getActivity(), "File already exist under SD card, playing Music", Toast.LENGTH_LONG).show();
-                    // Play Music
-                    playMusic();
+                if(permissionsGranted()){
+                    if(file.exists()){
+                        Toast.makeText(getActivity(), "File already exist under SD card, playing Music", Toast.LENGTH_SHORT).show();
+                        // Play Music
+                        playMusic();
+                    }
+                    else {
+                        Toast.makeText(getActivity(), "File doesn't exist under SD Card, downloading Mp3 from Internet", Toast.LENGTH_SHORT).show();
+                        // Trigger Async Task (onPreExecute method)
+                        new DownloadMusicFromInternet().execute(file_url);
+                    }
                 }
-                else {
-                    Toast.makeText(getActivity(), "File doesn't exist under SD Card, downloading Mp3 from Internet", Toast.LENGTH_LONG).show();
-                    // Trigger Async Task (onPreExecute method)
-                    new DownloadMusicFromInternet().execute(file_url);
-                }
+                else checkForPermissions();
             }
         });
 
         return v;
     }
 
+    private void checkForPermissions(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED && getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
+                getActivity().requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 5);
+            }
+        }
+    }
+
+    private boolean permissionsGranted() {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
     // Play Music
     protected void playMusic(){
         // Read Mp3 file present under SD card
-        @SuppressLint("SdCardPath") Uri myUri1 = Uri.parse("file:///sdcard/jai_ho.mp3");
+        Uri myUri1 = Uri.parse(Environment.getExternalStorageDirectory().getPath()+"/jai_ho.mp3");
         MediaPlayer player = new MediaPlayer();
         player.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
@@ -107,7 +128,6 @@ public class ThreeFragment extends Fragment {
             Toast.makeText(getActivity(), "IO Error occured", Toast.LENGTH_LONG).show();
         }
     }
-
 
     private class DownloadMusicFromInternet extends AsyncTask<String, String, String>{
 
@@ -143,19 +163,20 @@ public class ThreeFragment extends Fragment {
                 Log.e("Error: ", e.getMessage());
             }
             return null;
-
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            // Shows Progress Bar Dialog and then call doInBackground method
+            showDialog();
         }
 
         @Override
         protected void onPostExecute(String s) {
             // Dismiss the dialog after the Music file was downloaded
             //noinspection deprecation
-            getActivity().dismissDialog(progress_bar_type);
+            dismissDialog();
             Toast.makeText(getActivity(), "Download complete, playing Music", Toast.LENGTH_LONG).show();
             // Play the music
             playMusic();
@@ -166,5 +187,19 @@ public class ThreeFragment extends Fragment {
             // Set progress percentage
             prgDialog.setProgress(Integer.parseInt(progress[0]));
         }
+    }
+
+    private void dismissDialog(){
+        prgDialog.dismiss();
+    }
+
+    private void showDialog() {
+        prgDialog = new ProgressDialog(getActivity());
+        prgDialog.setMessage("Downloading Mp3 file. Please wait...");
+        prgDialog.setIndeterminate(false);
+        prgDialog.setMax(100);
+        prgDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        prgDialog.setCancelable(false);
+        prgDialog.show();
     }
 }
