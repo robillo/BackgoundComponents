@@ -10,4 +10,7 @@
     <string name="hint">5</string>
     <string name="start_my_asynctask">Start My AsyncTask</string>
     <string name="download_song">DOWNLOAD SONG</string>
+    <string name="start_repeating_alarm">Start Repeating Alarm</string>
+    <string name="cancel_repeating_alarm">Cancel Repeating Alarm</string>
+    <string name="one_time_alarm">One Time Alarm</string>
 </resources>

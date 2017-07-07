@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.appbusters.robinkamboj.backgoundcomponents.R;
 
@@ -14,6 +15,7 @@ import com.appbusters.robinkamboj.backgoundcomponents.R;
  */
 public class FourFragment extends Fragment {
 
+    Button startRepeat, cancel, startSingle;
 
     public FourFragment() {
         // Required empty public constructor
@@ -25,7 +27,13 @@ public class FourFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setRetainInstance(true);
-        return inflater.inflate(R.layout.fragment_four, container, false);
+        View v = inflater.inflate(R.layout.fragment_four, container, false);
+
+        startRepeat = (Button) v.findViewById(R.id.start_repeat);
+        cancel = (Button) v.findViewById(R.id.cancel);
+        startSingle = (Button) v.findViewById(R.id.start_single);
+
+        return v;
     }
 
 }
