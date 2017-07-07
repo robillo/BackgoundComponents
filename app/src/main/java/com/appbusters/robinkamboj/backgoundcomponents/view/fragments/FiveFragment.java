@@ -78,6 +78,19 @@ public class FiveFragment extends Fragment implements ServiceConnection{
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Intent intent= new Intent(getActivity(), LocalWordService.class);
+        getActivity().bindService(intent, this, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unbindService(this);
+    }
+
+    @Override
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         LocalWordService.MyBinder binder = (LocalWordService.MyBinder) iBinder;
         service = binder.getService();
