@@ -28,7 +28,7 @@ public class LocalWordService extends Service {
     }
 
     public class MyBinder extends Binder {
-        LocalWordService getService() {
+        public LocalWordService getService() {
             return LocalWordService.this;
         }
     }

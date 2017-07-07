@@ -13,4 +13,6 @@
     <string name="start_repeating_alarm">Start Repeating Alarm</string>
     <string name="cancel_repeating_alarm">Cancel Repeating Alarm</string>
     <string name="one_time_alarm">One Time Alarm</string>
+    <string name="trigger_service">Trigger service</string>
+    <string name="update_the_list">Update the list</string>
 </resources>
