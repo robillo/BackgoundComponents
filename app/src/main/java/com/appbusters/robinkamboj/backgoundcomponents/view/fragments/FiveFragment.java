@@ -2,6 +2,7 @@ package com.appbusters.robinkamboj.backgoundcomponents.view.fragments;
 
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -46,6 +47,10 @@ public class FiveFragment extends Fragment implements ServiceConnection{
         updateList = (Button) v.findViewById(R.id.updateList);
         triggerService = (Button) v.findViewById(R.id.triggerServiceUpdate);
         listView = (ListView) v.findViewById(R.id.list);
+
+        Intent intent= new Intent(getActivity(), LocalWordService.class);
+        getActivity().bindService(intent, this, Context.BIND_AUTO_CREATE);
+
         wordList = new ArrayList<>();
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, wordList);
         listView.setAdapter(adapter);
