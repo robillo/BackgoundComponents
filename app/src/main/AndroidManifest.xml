@@ -16,9 +16,16 @@
         android:theme="@style/AppTheme">
 
         <service android:enabled="true" android:name=".controller.PlayService"/>
+        <service android:name=".controller.LocalWordService" android:label="Word service"/>
 
         <receiver android:name=".controller.BootBroadcast">
             <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".controller.StartScheduleServiceReceiver">
+            <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
